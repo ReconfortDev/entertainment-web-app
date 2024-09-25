@@ -1,1 +1,21 @@
-<p>series works!</p>
+<div class="flex flex-col w-full gap-8">
+  <app-search (searchEvent)="handleSearch($event)" />
+  <div
+    class="w-full overflow-hidden flex flex-col gap-3 items-start justify-start"
+  >
+    <h1 class="text-2xl">TV Series</h1>
+    <div class="w-full grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-4 pr-2 rounded-3xl">
+      <app-moviecard />
+      <app-moviecard />
+      <app-moviecard />
+      <app-moviecard />
+      <app-moviecard />
+      <app-moviecard />
+      <app-moviecard />
+      <app-moviecard />
+      <app-moviecard />
+      <app-moviecard />
+      <app-moviecard />
+    </div>
+  </div>
+</div>

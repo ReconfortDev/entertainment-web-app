@@ -1,0 +1,12 @@
+<div
+  class="flex items-center gap-2 pl-4 rounded-lg group border-2 border-transparent hover:border-white/20"
+>
+  <img src="/assets/icon-search.svg" alt="search" />
+  <input
+    type="text"
+    placeholder="Search for movies or TV series"
+    [(ngModel)]="searchQuery"
+    (input)="onSearch()"
+    class="w-full px-4 py-3 text-lg bg-transparent text-white outline-none border-2 active:outline-none border-transparent"
+  />
+</div>

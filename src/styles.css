@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+  font-family: 'Outfit', sans-serif;
+  transition: ease-in-out 0.3s;
+}
+
+.filter-white {
+  filter: invert(1) brightness(100) saturate(0);
+}
+
+.filter-gray {
+  filter: invert(1) brightness(80%) saturate(0);
+}
