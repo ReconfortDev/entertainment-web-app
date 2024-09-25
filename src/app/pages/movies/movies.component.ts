@@ -4,7 +4,7 @@ import {SearchComponent} from "../../components/shared/search/search.component";
 import {TreandcardComponent} from "../../components/shared/treandcard/treandcard.component";
 
 @Component({
-  selector: 'app-movies',
+  selector: 'app-media',
   standalone: true,
     imports: [
         MoviecardComponent,

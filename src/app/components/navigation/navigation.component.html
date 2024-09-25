@@ -34,6 +34,16 @@
       src="assets/image-avatar.png"
       alt="homeSvg"
       class="w-12 h-12 border-2 border-white rounded-full group"
+      (click)="toggleAuthAction()"
     />
   </aside>
+
+  <button
+    (click)="navigate('signing'); this.toggleAuthAction();"
+    [ngClass]="authAction ? 'opacity-0 -translate-x-12':  'opacity-100 translate-x-0'"
+    class="bg-red fixed md:left-[120px] xl:left-[140px] bottom-14 px-6 py-3 rounded-lg transition-opacity duration-75">
+    <p>Sign in</p>
+  </button>
+
+
 </section>

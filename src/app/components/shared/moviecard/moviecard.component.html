@@ -3,7 +3,7 @@
 >
   <div class="w-full h-[160px] md:h-[280px] relative overflow-hidden rounded-3xl">
     <img
-      src="/assets/thumbnails/autosport-the-series/regular/large.jpg"
+      src="{{media.thumbnail.regular.large}}"
       alt="Image 1"
       class="absolute w-full h-full left-0 top-0 object-cover z-10 duration-300 group-hover:scale-110"
     />
@@ -37,15 +37,15 @@
   </div>
   <div class="flex flex-col flex-start justify-start items-start w-full">
     <div class="flex justify-start gap-1 text-sm text-light text-white/60">
-      <p>2019</p>
+      <p>{{ media.year }}</p>
       <p>.</p>
       <p>
         <img src="assets/icon-nav-movies.svg" alt="moview" class="w-4 h-4 filter-gray"/>
       </p>
-      <p>Movie</p>
+      <p>{{ media.category }}</p>
       <p>.</p>
-      <p>PG</p>
+      <p>{{ media.rating }}</p>
     </div>
-    <h1 class="text-xl mt-2">Beyond Earth</h1>
+    <h1 class="text-xl mt-2">{{ media.title }}</h1>
   </div>
 </div>

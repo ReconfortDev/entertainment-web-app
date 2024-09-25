@@ -11,10 +11,11 @@ import { Router } from '@angular/router';
 })
 export class NavigationComponent {
   constructor(private router: Router) {}
+  authAction: boolean = false;
 
   navItems = [
     { icon: 'assets/icon-nav-home.svg', altText: 'Home', route: '/home' },
-    { icon: 'assets/icon-nav-movies.svg', altText: 'Movies', route: '/movies' },
+    { icon: 'assets/icon-nav-movies.svg', altText: 'Movies', route: '/media' },
     {
       icon: 'assets/icon-nav-tv-series.svg',
       altText: 'TV Series',
@@ -29,6 +30,10 @@ export class NavigationComponent {
 
   isActive(route: string): boolean {
     return this.router.url === route;
+  }
+
+  toggleAuthAction() {
+    this.authAction = !this.authAction;
   }
 
   navigate(route: string): void {

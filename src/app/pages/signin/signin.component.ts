@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { RouteState } from '../../state/routes/route.state';
 import { signIn } from '../../state/auth/auth.actions';
 
 @Component({
@@ -11,10 +10,6 @@ import { signIn } from '../../state/auth/auth.actions';
   styleUrl: './signin.component.css'
 })
 export class SigninComponent {
-  constructor (private store: Store<RouteState>){}
 
-  handleSignIn() {
-    this.store.dispatch(signIn({ username: 'JohnDoe', token: 'sample-token' }));
-  }
 
 }

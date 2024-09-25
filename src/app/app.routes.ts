@@ -8,10 +8,10 @@ import { SignupComponent } from './pages/signup/signup.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'movies', component: MoviesComponent },
+  { path: 'media', component: MoviesComponent },
   { path: 'tv-series', component: SeriesComponent },
   { path: 'bookmark', component: BookmarkComponent },
-  { path: 'signin', component: SigninComponent },
+  { path: 'signing', component: SigninComponent },
   { path: 'signup', component: SignupComponent },
   { path: '**', redirectTo: 'home', pathMatch: 'full' },
 ];

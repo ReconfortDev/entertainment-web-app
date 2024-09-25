@@ -10,16 +10,17 @@ import { routes } from './app.routes';
 import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
+import {provideHttpClient} from "@angular/common/http";
 
-import { routeReducer } from './state/routes/route.reducer';
-import { RouteEffects } from './state/routes/route.effects';
+import {mediaReducer} from "./state/media/media.reducers";
+import {MediaEffects} from "./state/media/media.effects";
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideStore(routeReducer),
-    provideEffects([RouteEffects]),
+    provideStore({media: mediaReducer}),
+    provideEffects([ MediaEffects]),
     provideStoreDevtools({
       maxAge: 25,
       logOnly: !isDevMode(),
@@ -28,5 +29,6 @@ export const appConfig: ApplicationConfig = {
       traceLimit: 75, // maximum stack trace frames to be stored (in case trace option was provided as true)
       connectInZone: true, // If set to true, the connection is established within the Angular zone
     }),
+    provideHttpClient()
   ],
 };
