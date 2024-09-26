@@ -2,14 +2,19 @@
   class="w-full flex flex-col gap-2 md:gap-4 p-1 group"
 >
   <div class="w-full h-[160px] md:h-[280px] relative overflow-hidden rounded-3xl">
-    <img
-      src="{{media.thumbnail.regular.large}}"
-      alt="Image 1"
-      class="absolute w-full h-full left-0 top-0 object-cover z-10 duration-300 group-hover:scale-110"
-    />
+    <picture>
+      <source media="(min-width: 1024px)" srcset="{{media.thumbnail.regular.large}}" />
+      <source media="(min-width: 768px)" srcset="{{media.thumbnail.regular.medium}}" />
+      <img
+        src="{{media.thumbnail.regular.small}}"
+        alt="Image 1"
+        class="absolute w-full h-full left-0 top-0 object-cover z-10 duration-300 group-hover:scale-110"
+      />
+    </picture>
 
 
-  <div
+
+    <div
       class="absolute left-0 top-0 w-full h-full bg-black/0 hover:bg-black/50 flex flex-col justify-between items-end z-20 p-2 md:p-4"
     >
       <div

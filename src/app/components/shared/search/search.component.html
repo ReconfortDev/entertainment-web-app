@@ -4,7 +4,7 @@
   <img src="/assets/icon-search.svg" alt="search" />
   <input
     type="text"
-    placeholder="Search for movies or TV series"
+    [placeholder]="placeholder"
     [(ngModel)]="searchQuery"
     (input)="onSearch()"
     class="w-full px-4 py-3 text-lg bg-transparent text-white outline-none border-2 active:outline-none border-transparent"

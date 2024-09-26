@@ -1,5 +1,5 @@
 import { FormsModule } from '@angular/forms';
-import { Component, EventEmitter, Output } from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'app-search',
@@ -9,9 +9,11 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrl: './search.component.css',
 })
 export class SearchComponent {
+  @Input() placeholder!: string;
+  @Output() searchEvent = new EventEmitter<string>();
+
   searchQuery: string = '';
 
-  @Output() searchEvent = new EventEmitter<string>();
 
   onSearch() {
     this.searchEvent.emit(this.searchQuery);
