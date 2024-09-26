@@ -1,23 +1,39 @@
-<div class="flex flex-col w-full gap-8">
-  <app-search (searchEvent)="handleSearch($event)" />
-  <div
-    class="w-full overflow-hidden flex flex-col gap-3 items-start justify-start"
-  >
-    <h1 class="text-2xl">Movies</h1>
-    <div class="w-full grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-4 pr-2 rounded-3xl">
-      <ng-container *ngFor="let media of (movies$ | async)">
-        <app-moviecard [media]="media"/>
-      </ng-container>
+<app-movie-wrapper>
+  <div class="flex flex-col w-full gap-8">
+    <app-search (searchEvent)="handleSearch($event)" placeholder="Search for bookmarked shows"/>
+    <div
+      class="w-full overflow-hidden flex flex-col gap-3 items-start justify-start"
+    >
+      <h1 class="text-2xl">Movies</h1>
+      <div class="w-full grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-4 pr-2 rounded-3xl">
+        <ng-container *ngIf="loading$ | async; else recommendedContent">
+          <ng-container *ngFor="let _ of [].constructor(8)">
+            <app-skeleton></app-skeleton>
+          </ng-container>
+        </ng-container>
+        <ng-template #recommendedContent>
+          <ng-container *ngFor="let media of (movies$ | async)">
+            <app-moviecard [media]="media"></app-moviecard>
+          </ng-container>
+        </ng-template>
+      </div>
+    </div>
+    <div
+      class="w-full overflow-hidden flex flex-col gap-3 items-start justify-start"
+    >
+      <h1 class="text-2xl">TV Series</h1>
+      <div class="w-full grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-4 pr-2 rounded-3xl">
+        <ng-container *ngIf="loading$ | async; else recommendedContent">
+          <ng-container *ngFor="let _ of [].constructor(8)">
+            <app-skeleton></app-skeleton>
+          </ng-container>
+        </ng-container>
+        <ng-template #recommendedContent>
+          <ng-container *ngFor="let media of (tvSeries$ | async)">
+            <app-moviecard [media]="media"></app-moviecard>
+          </ng-container>
+        </ng-template>
+      </div>
     </div>
   </div>
-  <div
-    class="w-full overflow-hidden flex flex-col gap-3 items-start justify-start"
-  >
-    <h1 class="text-2xl">TV Series</h1>
-    <div class="w-full grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-4 pr-2 rounded-3xl">
-      <ng-container *ngFor="let media of (tvSeries$ | async)">
-        <app-moviecard [media]="media"/>
-      </ng-container>
-    </div>
-  </div>
-</div>
+</app-movie-wrapper>

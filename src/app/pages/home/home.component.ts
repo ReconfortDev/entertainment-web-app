@@ -12,13 +12,16 @@ import {
 } from "../../state/media/media.selector";
 import {filter, Observable} from "rxjs";
 import {MediaList} from "../../models";
-import {AsyncPipe, NgForOf} from "@angular/common";
+import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
 import {map} from "rxjs/operators";
+import {MovieWrapperComponent} from "../../components/movie-wrapper/movie-wrapper.component";
+import {SkeletonComponent} from "../../components/shared/moviecard/skeleton/skeleton.component";
+import {TrendskeletonComponent} from "../../components/shared/treandcard/trendskeleton/trendskeleton.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [SearchComponent, TreandcardComponent, MoviecardComponent, NgForOf, AsyncPipe],
+  imports: [SearchComponent, TreandcardComponent, MoviecardComponent, NgForOf, AsyncPipe, MovieWrapperComponent, NgIf, SkeletonComponent, TrendskeletonComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })

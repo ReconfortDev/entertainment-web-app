@@ -1,29 +1,46 @@
-<link rel="stylesheet"
-      href="../../../../../angular-kanban-task-management/src/app/components/main/body-wrapper/body-wrapper.component.css">
-<div class="flex flex-col w-full gap-8 pr-40">
-  <app-search (searchEvent)="handleSearch($event)"/>
+<app-movie-wrapper>
+  <div class="flex flex-col w-full gap-8 md:pr-40 mt-10vh mt-0">
+    <app-search (searchEvent)="handleSearch($event)" placeholder="Search for movies or TV series"/>
 
-  <div
-    class="w-full overflow-hidden flex flex-col gap-3 items-start justify-start"
-  >
-    <h1 class="text-2xl">Trending</h1>
-    <div
-      class="w-full flex justify-start items-start gap-5 overflow-x-scroll scroll-hidden pr-2 rounded-3xl"
-    >
-      <ng-container *ngFor="let media of (trending$ | async)">
-        <app-treandcard [media]="media"/>
-      </ng-container>
+    <div class="w-full overflow-hidden flex flex-col gap-3 items-start justify-start">
+      <h1 class="text-2xl">Trending</h1>
+      <div class="w-full flex justify-start items-start gap-5 overflow-x-scroll scroll-hidden pr-2 rounded-3xl">
+        <ng-container *ngIf="loading$ | async; else trendingContent">
+          <ng-container *ngFor="let _ of [].constructor(12)">
+            <app-trendskeleton></app-trendskeleton>
+          </ng-container>
+        </ng-container>
+        <ng-template #trendingContent>
+          <ng-container *ngIf="!(trending$ | async)?.length; else trendingMedia">
+            <div>No trending media available.</div>
+          </ng-container>
+          <ng-template #trendingMedia>
+            <ng-container *ngFor="let media of (trending$ | async)">
+              <app-treandcard [media]="media"></app-treandcard>
+            </ng-container>
+          </ng-template>
+        </ng-template>
+      </div>
     </div>
-  </div>
 
-  <div
-    class="w-full overflow-hidden flex flex-col gap-3 items-start justify-start"
-  >
-    <h1 class="text-2xl">Recommended for you</h1>
-    <div class="w-full grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-4 pr-2 rounded-3xl">
-      <ng-container *ngFor="let media of (medias$ | async)">
-        <app-moviecard [media]="media"/>
-      </ng-container>
+    <div class="w-full overflow-hidden flex flex-col gap-3 items-start justify-start">
+      <h1 class="text-2xl">Recommended for you</h1>
+      <div class="w-full grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-4 pr-2 rounded-3xl">
+        <ng-container *ngIf="loading$ | async; else recommendedContent">
+          <ng-container *ngFor="let _ of [].constructor(12)">
+            <app-skeleton></app-skeleton>
+          </ng-container>
+        </ng-container>
+        <ng-template #recommendedContent>
+          <ng-container *ngFor="let media of (medias$ | async)">
+            <app-moviecard [media]="media"></app-moviecard>
+          </ng-container>
+        </ng-template>
+      </div>
     </div>
+
+    <ng-container *ngIf="error$ | async as error">
+      <div class="error-message">{{ error }}</div>
+    </ng-container>
   </div>
-</div>
+</app-movie-wrapper>

@@ -6,8 +6,10 @@ import {MediaList} from "../../models";
 import {Store} from "@ngrx/store";
 import {selectAllMedias, selectMediaError, selectMediaLoading} from "../../state/media/media.selector";
 import {map} from "rxjs/operators";
-import {AsyncPipe, NgForOf} from "@angular/common";
+import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
 import {loadMedia} from "../../state/media/media.actions";
+import {MovieWrapperComponent} from "../../components/movie-wrapper/movie-wrapper.component";
+import {SkeletonComponent} from "../../components/shared/moviecard/skeleton/skeleton.component";
 
 @Component({
   selector: 'app-bookmark',
@@ -16,7 +18,10 @@ import {loadMedia} from "../../state/media/media.actions";
     MoviecardComponent,
     SearchComponent,
     AsyncPipe,
-    NgForOf
+    NgForOf,
+    MovieWrapperComponent,
+    NgIf,
+    SkeletonComponent
   ],
   templateUrl: './bookmark.component.html',
   styleUrl: './bookmark.component.css'

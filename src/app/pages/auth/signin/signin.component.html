@@ -1,1 +1,59 @@
-<h1 class="text-white">Sign In</h1>
+<main class="w-full h-screen flex flex-col gap-12 justify-center items-center">
+  <button class="w-12 h-12 p-2">
+    <img
+      src="assets/logo.svg"
+      alt="homeSvg"
+      class="w-full group-active:rounded-xl"
+    />
+  </button>
+
+  <form [formGroup]="signInForm" (ngSubmit)="onSubmit()" class="bg-dark p-6 rounded-2xl">
+    <h2 class="text-2xl">Login</h2>
+
+    <!-- Email Input Field -->
+    <div class="w-full flex flex-col gap-2 justify-start items-start h-16 mt-2 group">
+      <label
+        class="transition-all duration-300"
+        [ngClass]="(isInputFocused || (signInForm.get('email')?.value?.length > 0 && signInForm.get('email')?.touched)) ? 'translate-y-0' : 'translate-y-8'">
+        Email
+      </label>
+      <input
+        type="email"
+        formControlName="email"
+        class="w-[80vw] md:w-[50vw] lg:w-[30vw] xl:w-[25vw] h-12 !bg-transparent border-b-2 border-x-none outline-none relative z-20"
+        [ngClass]="(signInForm.get('email')?.invalid && signInForm.get('email')?.touched) ? 'border-b-red' : 'border-b' "
+        (focus)="isInputFocused = true"
+        (blur)="isInputFocused = false"
+      />
+      <div *ngIf="signInForm.get('email')?.invalid && signInForm.get('email')?.touched" class="text-red w-full -mt-10 text-sm text-end z-10">
+        Invalid email
+      </div>
+    </div>
+
+    <!-- Password Input Field -->
+    <div class="w-full flex flex-col gap-2 justify-start items-start h-16 mt-2 group">
+      <label
+        class="transition-all duration-300"
+        [ngClass]="(isPasswordFocused || (signInForm.get('password')?.value?.length > 0 && signInForm.get('password')?.touched)) ? 'translate-y-0' : 'translate-y-8'">
+        Password
+      </label>
+      <input
+        type="password"
+        formControlName="password"
+        class="w-[80vw] md:w-[50vw] lg:w-[30vw] xl:w-[25vw] h-12 !bg-transparent border-b-2 border-x-none outline-none relative z-20"
+        [ngClass]="(signInForm.get('password')?.invalid && signInForm.get('password')?.touched) ? 'border-b-red' : 'border-b' "
+        (focus)="isPasswordFocused = true"
+        (blur)="isPasswordFocused = false"
+      />
+      <div *ngIf="signInForm.get('password')?.invalid && signInForm.get('password')?.touched" class="text-red w-full -mt-10 text-sm text-end z-10">
+        Can't be empty
+      </div>
+    </div>
+
+    <button class="w-full p-3 bg-red items-center mt-8 rounded-lg" type="submit" [disabled]="signInForm.invalid">
+      Login to your account
+    </button>
+
+    <p class="w-full flex justify-center gap-2 py-6">Don’t have an account? <span class="text-red" routerLink="/signup">Sign Up</span></p>
+  </form>
+</main>

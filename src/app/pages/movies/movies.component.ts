@@ -7,8 +7,10 @@ import {MediaList} from "../../models";
 import {Store} from "@ngrx/store";
 import {selectAllMedias, selectMediaError, selectMediaLoading} from "../../state/media/media.selector";
 import {map} from "rxjs/operators";
-import {AsyncPipe, NgForOf} from "@angular/common";
+import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
 import {loadMedia} from "../../state/media/media.actions";
+import {MovieWrapperComponent} from "../../components/movie-wrapper/movie-wrapper.component";
+import {SkeletonComponent} from "../../components/shared/moviecard/skeleton/skeleton.component";
 
 @Component({
   selector: 'app-media',
@@ -18,7 +20,10 @@ import {loadMedia} from "../../state/media/media.actions";
     SearchComponent,
     TreandcardComponent,
     AsyncPipe,
-    NgForOf
+    NgForOf,
+    MovieWrapperComponent,
+    NgIf,
+    SkeletonComponent
   ],
   templateUrl: './movies.component.html',
   styleUrl: './movies.component.css'

@@ -29,7 +29,6 @@ export class NavigationComponent {
   ];
 
   isActive(route: string): boolean {
-    console.log("Route:", this.router.url)
     return this.router.url === route;
   }
 
