@@ -5,17 +5,9 @@
   >
     <h1 class="text-2xl">TV Series</h1>
     <div class="w-full grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-4 pr-2 rounded-3xl">
-      <app-moviecard />
-      <app-moviecard />
-      <app-moviecard />
-      <app-moviecard />
-      <app-moviecard />
-      <app-moviecard />
-      <app-moviecard />
-      <app-moviecard />
-      <app-moviecard />
-      <app-moviecard />
-      <app-moviecard />
+      <ng-container *ngFor="let media of (medias$ | async)">
+        <app-moviecard [media]="media"/>
+      </ng-container>
     </div>
   </div>
 </div>

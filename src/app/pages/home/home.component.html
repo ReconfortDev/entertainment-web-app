@@ -10,11 +10,9 @@
     <div
       class="w-full flex justify-start items-start gap-5 overflow-x-scroll scroll-hidden pr-2 rounded-3xl"
     >
-      <app-treandcard/>
-      <app-treandcard/>
-      <app-treandcard/>
-      <app-treandcard/>
-      <app-treandcard/>
+      <ng-container *ngFor="let media of (trending$ | async)">
+        <app-treandcard [media]="media"/>
+      </ng-container>
     </div>
   </div>
 

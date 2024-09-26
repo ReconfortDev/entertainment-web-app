@@ -10,9 +10,10 @@ import {
   selectMediaLoading,
   selectMediaError,
 } from "../../state/media/media.selector";
-import {Observable} from "rxjs";
+import {filter, Observable} from "rxjs";
 import {MediaList} from "../../models";
 import {AsyncPipe, NgForOf} from "@angular/common";
+import {map} from "rxjs/operators";
 
 @Component({
   selector: 'app-home',
@@ -26,11 +27,16 @@ export class HomeComponent implements OnInit {
   medias$: Observable<MediaList>;
   loading$: Observable<boolean>
   error$: Observable<string | null>
+  trending$: Observable<MediaList>
 
   constructor(private store: Store) {
     this.medias$ = this.store.select(selectAllMedias);
     this.loading$ = this.store.select(selectMediaLoading);
     this.error$ = this.store.select(selectMediaError);
+
+    this.trending$ = this.medias$.pipe(
+      map((mediaList: MediaList) => mediaList.filter(media => media.isTrending))
+    );
   }
 
   ngOnInit() {

@@ -13,10 +13,10 @@
       class="absolute left-0 top-0 w-full h-full bg-black/0 hover:bg-black/50 flex flex-col justify-between items-end z-20 p-2 md:p-4"
     >
       <div
-        class="w-10 h-10 bg-gray hover:bg-black duration-200 active:scale-75 flex justify-center items-center rounded-full cursor-pointer"
+        class="w-10 h-10 bg-dark hover:bg-black duration-200 active:scale-75 flex justify-center items-center rounded-full cursor-pointer"
       >
         <img
-          src="/assets/icon-bookmark-empty.svg"
+          [src]="!media.isBookmarked ? '/assets/icon-bookmark-empty.svg' : '/assets/icon-bookmark-full.svg'"
           alt="Image 2"
           class="w-4 h-4"
         />
@@ -40,7 +40,11 @@
       <p>{{ media.year }}</p>
       <p>.</p>
       <p>
-        <img src="assets/icon-nav-movies.svg" alt="moview" class="w-4 h-4 filter-gray"/>
+        <img
+          [src]="media.category === 'Movie' ? 'assets/icon-nav-movies.svg' : 'assets/icon-nav-tv-series.svg'"
+          alt="movie"
+          class="w-4 h-4 filter-gray"
+        />
       </p>
       <p>{{ media.category }}</p>
       <p>.</p>
