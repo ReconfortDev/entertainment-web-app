@@ -18,3 +18,9 @@ export const selectMediaError = createSelector(
   selectMediaState,
   (state: MediaState) => state.error
 )
+
+export const selectMediaById = (mediaId: string) =>
+  createSelector(
+    selectAllMedias,
+    (medias) => medias.find((media) => media.title === mediaId)
+  );

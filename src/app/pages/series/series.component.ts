@@ -26,7 +26,7 @@ import {SkeletonComponent} from "../../components/shared/moviecard/skeleton/skel
   templateUrl: './series.component.html',
   styleUrl: './series.component.css'
 })
-export class SeriesComponent implements OnInit{
+export class SeriesComponent{
   searchResult: any[] = [];
   medias$: Observable<MediaList>;
   loading$: Observable<boolean>
@@ -38,10 +38,6 @@ export class SeriesComponent implements OnInit{
     );
     this.loading$ = this.store.select(selectMediaLoading);
     this.error$ = this.store.select(selectMediaError);
-  }
-
-  ngOnInit() {
-    this.store.dispatch(loadMedia())
   }
 
   handleSearch(searchQuery: string) {

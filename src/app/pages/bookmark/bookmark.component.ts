@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {MoviecardComponent} from "../../components/shared/moviecard/moviecard.component";
 import {SearchComponent} from "../../components/shared/search/search.component";
-import {Observable} from "rxjs";
+import {Observable, of} from "rxjs";
 import {MediaList} from "../../models";
 import {Store} from "@ngrx/store";
 import {selectAllMedias, selectMediaError, selectMediaLoading} from "../../state/media/media.selector";
@@ -26,7 +26,7 @@ import {SkeletonComponent} from "../../components/shared/moviecard/skeleton/skel
   templateUrl: './bookmark.component.html',
   styleUrl: './bookmark.component.css'
 })
-export class BookmarkComponent implements OnInit{
+export class BookmarkComponent{
   searchResult: any[] = [];
   media$: Observable<MediaList>
   movies$: Observable<MediaList>;
@@ -35,23 +35,24 @@ export class BookmarkComponent implements OnInit{
   error$: Observable<string | null>
 
   constructor(private store: Store) {
-
-    this.media$ = this.store.select(selectAllMedias).pipe(
-      map((mediaList: MediaList) => mediaList.filter(media => media.isBookmarked))
-    )
+    this.media$ = this.loadBookmarkedMedia();
 
     this.movies$ = this.media$.pipe(
       map((mediaList: MediaList) => mediaList.filter(media => media.category === "Movie"))
     );
+
     this.tvSeries$ = this.media$.pipe(
       map((mediaList: MediaList) => mediaList.filter(media => media.category === "TV Series"))
     );
+
     this.loading$ = this.store.select(selectMediaLoading);
     this.error$ = this.store.select(selectMediaError);
   }
 
-  ngOnInit() {
-    this.store.dispatch(loadMedia())
+  loadBookmarkedMedia(): Observable<MediaList> {
+    const bookmarkedMedia: MediaList = JSON.parse(localStorage.getItem('bookmarkedMedia') || '[]');
+    console.log('Bookmarked Media from LocalStorage:', bookmarkedMedia);
+    return of(bookmarkedMedia);
   }
 
   handleSearch(searchQuery: string) {

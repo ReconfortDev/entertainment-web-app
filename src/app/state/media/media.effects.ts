@@ -3,7 +3,13 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 import { MediaService} from "../../services/media/media.service";
-import {loadMedia, loadMediasSuccess, loadMediasFailure} from "./media.actions";
+import {
+  loadMedia,
+  loadMediasSuccess,
+  loadMediasFailure,
+  updateBookmarkStatus,
+  updateBookmarkStatusFailure, updateBookmarkStatusSuccess
+} from "./media.actions";
 
 @Injectable()
 export class MediaEffects {
@@ -17,6 +23,18 @@ export class MediaEffects {
         this.mediaService.getMedias().pipe(
           map((medias) => loadMediasSuccess({ medias })),
           catchError((error) => of(loadMediasFailure({ error })))
+        )
+      )
+    )
+  );
+
+  updateBookmarkStatus$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(updateBookmarkStatus),
+      mergeMap(({ mediaId, isBookmarked }) =>
+        this.mediaService.updateBookmarkStatus(mediaId, isBookmarked).pipe(
+          map(() => updateBookmarkStatusSuccess({ mediaId, isBookmarked })),
+          catchError((error) => of(updateBookmarkStatusFailure({ error })))
         )
       )
     )

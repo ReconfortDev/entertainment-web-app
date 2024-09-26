@@ -16,6 +16,9 @@ export class SearchComponent {
 
 
   onSearch() {
-    this.searchEvent.emit(this.searchQuery);
+    if (this.searchQuery.trim().length > 0) {
+      this.searchEvent.emit(this.searchQuery);
+    }
   }
+
 }

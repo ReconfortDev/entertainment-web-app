@@ -19,6 +19,7 @@
     >
       <div
         class="w-10 h-10 bg-dark hover:bg-black duration-200 active:scale-75 flex justify-center items-center rounded-full cursor-pointer"
+        (click)="toggleBookmark()"
       >
         <img
           [src]="!media.isBookmarked ? '/assets/icon-bookmark-empty.svg' : '/assets/icon-bookmark-full.svg'"
