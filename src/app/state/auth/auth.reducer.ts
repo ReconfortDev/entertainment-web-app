@@ -1,23 +1,75 @@
-import { createReducer, on } from '@ngrx/store';
-import { signIn, signOut } from './auth.actions';
-import { initialAuthState } from './auth.state';
+import {createReducer, on} from '@ngrx/store';
+import {
+  signUp,
+  signUpSuccess,
+  signUpFailure,
+  signIn,
+  signInSuccess,
+  signInFailure,
+  loadUsers,
+  loadUsersSuccess, loadUsersFailure
+} from "./auth.actions";
+import {AuthState, initialAuthState} from "./auth.state";
 
 export const authReducer = createReducer(
   initialAuthState,
 
-  // Handle sign-in action
-  on(signIn, (state, { username, token }) => ({
+  on(loadUsers, (state) => ({
     ...state,
-    isAuthenticated: true,
-    username: username,
-    token: token,
+    loading: true,
+    error: null,
   })),
 
-  // Handle sign-out action
-  on(signOut, (state) => ({
+  on(loadUsersSuccess, (state, {users}) => ({
     ...state,
-    isAuthenticated: false,
-    username: null,
-    token: null,
+    loading: false,
+    users,
+    error: null,
+  })),
+
+  on(loadUsersFailure, (state, {error}) => ({
+    ...state,
+    loading: false,
+    error: error,
+  })),
+
+  // Signup
+  on(signUp, (state) => ({
+    ...state,
+    loading: true,
+    error: null,
+  })),
+
+  on(signUpSuccess, (state, {user}) => ({
+    ...state,
+    loading: false,
+    users: [...state.users, user],
+    error: null,
+  })),
+
+  on(signUpFailure, (state, {error}) => ({
+    ...state,
+    loading: false,
+    error
+  })),
+
+  //Sign in
+  on(signIn, (state) => ({
+    ...state,
+    loading: true,
+    error: null,
+  })),
+
+  on(signInSuccess, (state, {user}) => ({
+    ...state,
+    loading: false,
+    user:user,
+    error: null,
+  })),
+
+  on(signInFailure, (state, {error}) => ({
+    ...state,
+    loading: false,
+    error
   }))
-);
+)

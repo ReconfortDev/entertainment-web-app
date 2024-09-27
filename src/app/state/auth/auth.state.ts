@@ -1,11 +1,16 @@
+import { User } from '../../models/auth';
+
+
 export interface AuthState {
-  isAuthenticated: boolean;
-  username: string | null;
-  token: string | null;
+  users: User[];
+  user: User | null;
+  loading: boolean;
+  error: string | null;
 }
 
 export const initialAuthState: AuthState = {
-  isAuthenticated: false,
-  username: null,
-  token: null,
+  users: [],
+  user: null,
+  loading: false,
+  error: null
 };
