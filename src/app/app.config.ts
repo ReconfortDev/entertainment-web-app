@@ -13,14 +13,16 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import {provideHttpClient} from "@angular/common/http";
 
 import {mediaReducer} from "./state/media/media.reducers";
+import {authReducer} from "./state/auth/auth.reducer";
 import {MediaEffects} from "./state/media/media.effects";
+import {AuthEffects} from "./state/auth/auth.effects";
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideStore({media: mediaReducer}),
-    provideEffects([ MediaEffects]),
+    provideStore({media: mediaReducer, auth: authReducer}),
+    provideEffects([ MediaEffects, AuthEffects]),
     provideStoreDevtools({
       maxAge: 25,
       logOnly: !isDevMode(),

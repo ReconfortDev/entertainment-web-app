@@ -29,7 +29,6 @@ import {TrendskeletonComponent} from "../../components/shared/treandcard/trendsk
   styleUrl: './home.component.css',
 })
 export class HomeComponent {
-  searchResult! : MediaItem[];
   isSearching = false;
   medias$: Observable<MediaList>;
   loading$: Observable<boolean>

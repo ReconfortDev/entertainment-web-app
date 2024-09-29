@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class NavigationComponent {
   constructor(private router: Router) {}
   authAction: boolean = false;
+  isAuthenticated! : boolean;
 
   navItems = [
     { icon: 'assets/icon-nav-home.svg', altText: 'Home', route: '/home' },
@@ -30,6 +31,15 @@ export class NavigationComponent {
 
   isActive(route: string): boolean {
     return this.router.url === route;
+  }
+
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('token');
+  }
+
+  logout(): void {
+    localStorage.removeItem('token');
+    this.navigate('/signin');
   }
 
   toggleAuthAction() {

@@ -2,15 +2,16 @@ import {Component, OnInit} from '@angular/core';
 import {MoviecardComponent} from "../../components/shared/moviecard/moviecard.component";
 import {SearchComponent} from "../../components/shared/search/search.component";
 import {TreandcardComponent} from "../../components/shared/treandcard/treandcard.component";
-import {Observable} from "rxjs";
+import {Observable, startWith, Subject} from "rxjs";
 import {MediaList} from "../../models";
 import {Store} from "@ngrx/store";
 import {selectAllMedias, selectMediaError, selectMediaLoading} from "../../state/media/media.selector";
-import {map} from "rxjs/operators";
+import {map, switchMap} from "rxjs/operators";
 import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
 import {loadMedia} from "../../state/media/media.actions";
 import {MovieWrapperComponent} from "../../components/movie-wrapper/movie-wrapper.component";
 import {SkeletonComponent} from "../../components/shared/moviecard/skeleton/skeleton.component";
+import {MediaService} from "../../services/media/media.service";
 
 @Component({
   selector: 'app-media',
@@ -29,20 +30,39 @@ import {SkeletonComponent} from "../../components/shared/moviecard/skeleton/skel
   styleUrl: './movies.component.css'
 })
 export class MoviesComponent{
-  searchResult: any[] = [];
+  isSearching = false;
   medias$: Observable<MediaList>;
   loading$: Observable<boolean>
   error$: Observable<string | null>
 
-  constructor(private store: Store) {
+  private searchSubject = new Subject<string>();
+  constructor(private store: Store, private mediaService: MediaService) {
     this.medias$ = this.store.select(selectAllMedias).pipe(
       map((mediaList: MediaList) => mediaList.filter(media => media.category === "Movie"))
     );
     this.loading$ = this.store.select(selectMediaLoading);
     this.error$ = this.store.select(selectMediaError);
+
+    this.medias$ = this.searchSubject.pipe(
+      startWith(''),
+      switchMap(query => {
+        if (query.length > 3) {
+          this.isSearching = true;
+          return this.mediaService.search(query);
+        }
+        else if (query === ''){
+          this.isSearching = false;
+          return this.store.select(selectAllMedias);
+        }
+        else {
+          this.isSearching = false;
+          return this.store.select(selectAllMedias);
+        }
+      })
+    );
   }
 
-  handleSearch(searchQuery: string) {
-    console.log(searchQuery);
+  onSearch(query: string) {
+    this.searchSubject.next(query);
   }
 }

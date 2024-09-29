@@ -1,5 +1,5 @@
 <main class="w-full h-screen flex flex-col gap-12 justify-center items-center">
-  <button class="w-12 h-12 p-2">
+  <button class="w-12 h-12 p-2" routerLink="/home">
     <img
       src="assets/logo.svg"
       alt="homeSvg"
@@ -74,10 +74,14 @@
       </div>
     </div>
 
-    <button class="w-full p-3 bg-red items-center mt-8 rounded-lg" type="submit" [disabled]="signUpForm.invalid">
+    <button class="w-full p-3 bg-red hover:bg-white hover:text-dark cursor-pointer items-center mt-8 rounded-lg" type="submit" [disabled]="signUpForm.invalid">
       Create an account
     </button>
 
-    <p class="w-full flex justify-center gap-2 py-6">Already have an account? <span class="text-red" routerLink="/signin">Sign In</span></p>
+    <p class="w-full flex justify-center gap-2 py-6">Already have an account? <span class="text-red cursor-pointer" routerLink="/signin">Sign In</span></p>
   </form>
 </main>
+
+<div *ngIf="showErrorMessage" class="absolute top-0 right-0 px-6 bg-red/50 text-xs text-center text-white mt-3 p-4 rounded-md m-4">
+  {{ errorMessage$ | async }}
+</div>
