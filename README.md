@@ -1,27 +1,77 @@
 # EntertainmentWebApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.4.
+This project is a fully functional, responsive entertainment web application built with Angular. The app allows users to browse, search, and bookmark their favorite movies and TV series. It leverages **NgRx** for state management and **RxJS** for efficient data handling, providing a smooth and engaging user experience. The app matches the provided design closely, incorporating dynamic content rendering and user interaction.
 
-## Development server
+[Live Demo: EntertainmentWebApp](https://amalimovieapp.netlify.app/home)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Features
 
-## Code scaffolding
+- **Browse Movies & TV Shows**: View movies and TV series dynamically rendered from the local JSON data.
+- **Search Functionality**: Quickly filter through content using real-time search powered by RxJS.
+- **Bookmarking**: Add or remove shows from bookmarks, and view them on a dedicated bookmarked page.
+- **NgRx State Management**: Manage application state efficiently with actions, reducers, effects, and selectors.
+- **Responsive Design**: Seamless experience across various devices with responsive layouts.
+- **Hover Effects**: Interactive hover states that provide visual feedback for a polished user interface.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Project Setup
 
-## Build
+### Getting Started
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. Clone the repository:
 
-## Running unit tests
+    ```bash
+    git clone git@github.com:ReconfortDev/entertainment-web-app.git
+    ```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+2. Navigate to the project directory:
 
-## Running end-to-end tests
+    ```bash
+    cd entertainment-web-app
+    ```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+3. Install dependencies:
 
-## Further help
+    ```bash
+    npm install
+    ```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+4. Serve the application locally:
+
+    ```bash
+    ng serve
+    ```
+
+5. Open your browser and navigate to `http://localhost:4200/`.
+
+### Project Structure
+
+- **src/app/**: Contains the core components, services, and NgRx files (actions, reducers, selectors).
+- **assets/**: Includes the local `data.json` file, images, and other static assets.
+
+### Key Technologies
+
+- **Angular**: Frontend framework used to build the application.
+- **NgRx**: State management library to handle application state.
+- **RxJS**: Library for handling asynchronous data streams.
+- **TailwindCSS**: CSS preprocessor used for styling.
+
+## Available Commands
+
+- **Development Server**: Run `ng serve` for a dev server. The application will reload if you change any source files.
+- **Build**: Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+
+## Deployment
+
+The application is deployed on [Netlify](https://amalimovieapp.netlify.app/home). To deploy updates:
+
+1. Build the application:
+
+    ```bash
+    ng build --prod
+    ```
+
+2. Push the build files to your hosting provider, or configure automatic deployments via GitHub.
+
+## Contributions
+
+Contributions are welcome! Feel free to fork this repository, create a new branch, and submit a pull request.
