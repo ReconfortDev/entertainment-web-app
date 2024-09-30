@@ -14,21 +14,20 @@ This project is a fully functional, responsive entertainment web application bui
 - **Hover Effects**: Interactive hover states that provide visual feedback for a polished user interface.
 
 ## Default users
-
-[
   {
     "email": "test1@gmail.com",
     "password": "test111"
   },
+  
   {
     "email": "test2@gmail.com",
     "password": "test222"
   },
+  
   {
     "email": "test3@gmail.com",
     "password": "test333"
   }
-]
 
 
 ## Project Setup
